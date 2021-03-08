@@ -7,10 +7,14 @@
 
 import Foundation
 
-  struct CartData {
+struct CartData {
     static var cartList:[CartModel] = []
 }
 
 func addNewItem(item:CartModel){
     CartData.cartList.append(item)
+}
+
+func removeCart(){
+    CartData.cartList=[]
 }
