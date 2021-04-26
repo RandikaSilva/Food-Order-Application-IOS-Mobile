@@ -20,14 +20,14 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "603F93A0-69CF-4436-A844-C15E858E9393 - 1782c7b8f72fc8ae"
+                  uuid = "603F93A0-69CF-4436-A844-C15E858E9393 - 5b6a6b6e085aa06c"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "food_order_application.FirebaseService.registerUser(emailAddress: Swift.String, mobileNumber: Swift.String, password: Swift.String, result: (Swift.Optional&lt;Swift.Int&gt;) -&gt; ()) -&gt; ()"
                   moduleName = "food-order-application"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/lasitha/Documents/IOS/M.L.R.SILVA-COBSCCOMP192P-040-food-order-application/food-order-application/food-order-application/Service/FirebaseServices.swift"
+                  urlString = "file:///Users/lasitha/Documents/IOS/git%20clone%20food%20order/M.L.R.SILVA-COBSCCOMP192P-040--NIBM-Cafe/food-order-application/food-order-application/Service/FirebaseServices.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "16"
@@ -35,14 +35,14 @@
                   offsetFromSymbolStart = "82">
                </Location>
                <Location
-                  uuid = "603F93A0-69CF-4436-A844-C15E858E9393 - dbdc30aa80e8aa66"
+                  uuid = "603F93A0-69CF-4436-A844-C15E858E9393 - 97349c7c7f9dc2a4"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "closure #1 (Swift.Optional&lt;__C.FIRAuthDataResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in food_order_application.FirebaseService.registerUser(emailAddress: Swift.String, mobileNumber: Swift.String, password: Swift.String, result: (Swift.Optional&lt;Swift.Int&gt;) -&gt; ()) -&gt; ()"
                   moduleName = "food-order-application"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/lasitha/Documents/IOS/M.L.R.SILVA-COBSCCOMP192P-040-food-order-application/food-order-application/food-order-application/Service/FirebaseServices.swift"
+                  urlString = "file:///Users/lasitha/Documents/IOS/git%20clone%20food%20order/M.L.R.SILVA-COBSCCOMP192P-040--NIBM-Cafe/food-order-application/food-order-application/Service/FirebaseServices.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "17"
@@ -142,8 +142,8 @@
             filePath = "food-order-application/ReistrationController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
             landmarkName = "register()"
             landmarkType = "7">
          </BreakpointContent>
@@ -158,8 +158,8 @@
             filePath = "food-order-application/ReistrationController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "82"
-            endingLineNumber = "82"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
             landmarkName = "register()"
             landmarkType = "7">
          </BreakpointContent>
@@ -174,8 +174,8 @@
             filePath = "food-order-application/Service/FirebaseServices.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
             landmarkName = "fetchFoodsData(completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -190,8 +190,8 @@
             filePath = "food-order-application/Service/FirebaseServices.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
             landmarkName = "fetchFoodsData(completion:)"
             landmarkType = "7">
             <Locations>
@@ -238,8 +238,8 @@
             filePath = "food-order-application/Service/FirebaseServices.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
             landmarkName = "fetchFoodsData(completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -398,8 +398,8 @@
             filePath = "food-order-application/Service/FirebaseServices.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "84"
-            endingLineNumber = "84"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
             landmarkName = "fetchFoodsData(completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -414,8 +414,8 @@
             filePath = "food-order-application/Service/FirebaseServices.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
             landmarkName = "fetchFoodsData(completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -430,8 +430,8 @@
             filePath = "food-order-application/Service/FirebaseServices.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
             landmarkName = "fetchFoodsData(completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -446,8 +446,8 @@
             filePath = "food-order-application/Service/FirebaseServices.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
             landmarkName = "fetchFoodsData(completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -472,7 +472,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "5E2E0D55-1C09-4E0F-B2E1-FC6F09DB08BD"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "food-order-application/Service/FirebaseServices.swift"
@@ -654,8 +654,8 @@
             filePath = "food-order-application/Service/FirebaseServices.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
             landmarkName = "fetchUsersData(completion:)"
             landmarkType = "7">
             <Locations>
@@ -702,8 +702,8 @@
             filePath = "food-order-application/Service/FirebaseServices.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "101"
-            endingLineNumber = "101"
+            startingLineNumber = "104"
+            endingLineNumber = "104"
             landmarkName = "fetchUsersData(completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -734,8 +734,8 @@
             filePath = "food-order-application/Service/FirebaseServices.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
+            startingLineNumber = "107"
+            endingLineNumber = "107"
             landmarkName = "fetchUsersData(completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -750,8 +750,8 @@
             filePath = "food-order-application/Service/FirebaseServices.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-            endingLineNumber = "110"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
             landmarkName = "fetchUsersData(completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -830,8 +830,8 @@
             filePath = "food-order-application/ReistrationController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
             landmarkName = "register()"
             landmarkType = "7">
          </BreakpointContent>
@@ -846,8 +846,40 @@
             filePath = "food-order-application/ReistrationController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "84"
-            endingLineNumber = "84"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
+            landmarkName = "register()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7AC1D9C6-C809-44CB-A7CD-79DF1F941E4F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "food-order-application/ReistrationController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
+            landmarkName = "register()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2BE2B43F-F71B-477A-A2D7-AC1B4191F4E5"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "food-order-application/ReistrationController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
             landmarkName = "register()"
             landmarkType = "7">
          </BreakpointContent>

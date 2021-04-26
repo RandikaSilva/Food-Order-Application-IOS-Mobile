@@ -33,9 +33,15 @@ class RegistrationController: UIViewController {
     
     @IBAction func registerButton(_ sender: Any) {
         if(txtEmailAddress.text != "" && txtPassword.text != "" && txtMobileNumber.text != ""){
-          
-                register()
-            
+            if(txtPassword.text!.count>=8){
+                if(txtMobileNumber.text!.count==10){
+                    register()
+                }else{
+                    showAlert(title: "Oops!", message: "Mobile number needs to be 10 digits")
+                }
+            }else{
+                showAlert(title: "Oops!", message: "Password needs to be at least 8 digits")
+            }
         }else{
             showAlert(title: "Oops!", message: "Please fill all fields")
         }
@@ -64,6 +70,8 @@ class RegistrationController: UIViewController {
     }
     
     func register(){
+        
+        
         self.firebaseService.registerUser(emailAddress:txtEmailAddress.text!, mobileNumber: txtMobileNumber.text!, password: txtPassword.text!)
         {(result:Int?)->Void in
             if(result==1){

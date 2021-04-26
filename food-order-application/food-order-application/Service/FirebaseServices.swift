@@ -6,8 +6,8 @@
 //
 
 import UIKit;
-import FirebaseAuth
-import FirebaseFirestore
+import FirebaseAuth;
+import FirebaseFirestore;
 
 class FirebaseService: NSObject {
     let db = Firestore.firestore()
@@ -46,6 +46,9 @@ class FirebaseService: NSObject {
             }
         }
     }
+    
+    
+    
     func forgetPassword(emailAddress:String,result: @escaping (_ authResult: Int?)->Void){
         Auth.auth().sendPasswordReset(withEmail: emailAddress) { (error) in
             if error != nil {

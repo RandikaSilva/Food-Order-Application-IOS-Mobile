@@ -17,11 +17,11 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FHR-eB-7gE">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="298.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="299"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="azY-i6-eDA">
-                                <rect key="frame" x="0.0" y="298.5" width="414" height="299"/>
+                                <rect key="frame" x="0.0" y="299" width="414" height="299"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="BFP-5L-rSr">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="299"/>
@@ -29,12 +29,15 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Idg-cN-GdZ">
                                                 <rect key="frame" x="8" y="8" width="398" height="283"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icons8-kitchen-room-96" translatesAutoresizingMaskIntoConstraints="NO" id="Hzf-4e-XHu">
-                                                        <rect key="frame" x="84" y="8" width="274" height="158.5"/>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="icons8-kitchen-room-96" translatesAutoresizingMaskIntoConstraints="NO" id="Hzf-4e-XHu">
+                                                        <rect key="frame" x="62" y="8" width="274" height="158.5"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="158.5" id="zG8-Jb-mwT"/>
+                                                        </constraints>
                                                         <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                                     </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cafe' NIBM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i9Y-Bw-bnk">
-                                                        <rect key="frame" x="131" y="233" width="150" height="50"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Cafe' NIBM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i9Y-Bw-bnk">
+                                                        <rect key="frame" x="124" y="229" width="150" height="50"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="H28-K3-OPy"/>
                                                             <constraint firstAttribute="height" constant="50" id="SXB-Mz-mdz"/>
@@ -46,13 +49,12 @@
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="Hzf-4e-XHu" secondAttribute="bottom" constant="116.5" id="0VZ-Sm-1v5"/>
-                                                    <constraint firstItem="Hzf-4e-XHu" firstAttribute="centerX" secondItem="Idg-cN-GdZ" secondAttribute="centerX" constant="22" id="308-Nt-Xpg"/>
-                                                    <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="Hzf-4e-XHu" secondAttribute="trailing" constant="70" id="F9X-BH-Pvg"/>
-                                                    <constraint firstItem="Hzf-4e-XHu" firstAttribute="centerY" secondItem="Idg-cN-GdZ" secondAttribute="centerY" constant="-54.25" id="dRY-TC-GSZ"/>
-                                                    <constraint firstItem="Hzf-4e-XHu" firstAttribute="top" relation="lessThanOrEqual" secondItem="Idg-cN-GdZ" secondAttribute="top" constant="70" id="enS-49-uCd"/>
+                                                    <constraint firstItem="Hzf-4e-XHu" firstAttribute="centerX" secondItem="Idg-cN-GdZ" secondAttribute="centerX" id="03m-si-Pmk"/>
+                                                    <constraint firstItem="Hzf-4e-XHu" firstAttribute="centerX" secondItem="i9Y-Bw-bnk" secondAttribute="centerX" id="0Ck-I1-T5k"/>
+                                                    <constraint firstItem="Hzf-4e-XHu" firstAttribute="top" secondItem="Idg-cN-GdZ" secondAttribute="topMargin" id="76N-7s-eSb"/>
+                                                    <constraint firstItem="Hzf-4e-XHu" firstAttribute="leading" secondItem="Idg-cN-GdZ" secondAttribute="leading" constant="62" id="QC0-ch-GpK"/>
+                                                    <constraint firstItem="i9Y-Bw-bnk" firstAttribute="top" secondItem="Hzf-4e-XHu" secondAttribute="bottom" constant="62.5" id="Zve-jS-D5D"/>
                                                     <constraint firstItem="i9Y-Bw-bnk" firstAttribute="centerX" secondItem="Idg-cN-GdZ" secondAttribute="centerX" constant="7" id="iKu-L8-YUu"/>
-                                                    <constraint firstItem="Hzf-4e-XHu" firstAttribute="leading" relation="lessThanOrEqual" secondItem="Idg-cN-GdZ" secondAttribute="leading" constant="84" id="pvI-mH-VFM"/>
                                                     <constraint firstItem="i9Y-Bw-bnk" firstAttribute="centerY" secondItem="Idg-cN-GdZ" secondAttribute="centerY" constant="116.5" id="yMS-kg-u3M"/>
                                                 </constraints>
                                             </view>
@@ -69,21 +71,21 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nTg-ss-oct">
-                                <rect key="frame" x="0.0" y="597.5" width="414" height="298.5"/>
+                                <rect key="frame" x="0.0" y="598" width="414" height="299"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="YNJ-hU-EI7">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="298.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="299"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lto-WH-Wmg">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="99.5"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GSG-LV-b28">
-                                                <rect key="frame" x="0.0" y="99.5" width="414" height="99.5"/>
+                                                <rect key="frame" x="0.0" y="99.5" width="414" height="100"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rAr-nH-fRB">
-                                                <rect key="frame" x="0.0" y="199" width="414" height="99.5"/>
+                                                <rect key="frame" x="0.0" y="199.5" width="414" height="99.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Powerd by NIBM Computing" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2xF-Sc-8KN">
                                                         <rect key="frame" x="120" y="7" width="186" height="50"/>

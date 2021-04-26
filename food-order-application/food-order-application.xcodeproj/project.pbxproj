@@ -27,7 +27,8 @@
 		781B6D7125EFEC0600C5D25B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 781B6D6F25EFEC0600C5D25B /* LaunchScreen.storyboard */; };
 		781B6D7C25EFEC0600C5D25B /* food_order_applicationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781B6D7B25EFEC0600C5D25B /* food_order_applicationTests.swift */; };
 		781B6D8725EFEC0600C5D25B /* food_order_applicationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781B6D8625EFEC0600C5D25B /* food_order_applicationUITests.swift */; };
-		7880B37925F51D170031CDA8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7880B37825F51D170031CDA8 /* GoogleService-Info.plist */; };
+		786F15D12636F4280048E3DB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 786F15D02636F4280048E3DB /* GoogleService-Info.plist */; };
+		786F15E626370F410048E3DB /* StoreSegmentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786F15E526370F410048E3DB /* StoreSegmentController.swift */; };
 		78F847DF25F15E760099669D /* FoodDataList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F847DE25F15E760099669D /* FoodDataList.swift */; };
 		78F847E725F15EC00099669D /* FoodItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F847E625F15EC00099669D /* FoodItemModel.swift */; };
 		78F847EC25F15F800099669D /* CardDataList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F847EB25F15F800099669D /* CardDataList.swift */; };
@@ -87,7 +88,8 @@
 		781B6D8225EFEC0600C5D25B /* food-order-applicationUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "food-order-applicationUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		781B6D8625EFEC0600C5D25B /* food_order_applicationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = food_order_applicationUITests.swift; sourceTree = "<group>"; };
 		781B6D8825EFEC0600C5D25B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7880B37825F51D170031CDA8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		786F15D02636F4280048E3DB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		786F15E526370F410048E3DB /* StoreSegmentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreSegmentController.swift; sourceTree = "<group>"; };
 		78F847DE25F15E760099669D /* FoodDataList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDataList.swift; sourceTree = "<group>"; };
 		78F847E625F15EC00099669D /* FoodItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodItemModel.swift; sourceTree = "<group>"; };
 		78F847EB25F15F800099669D /* CardDataList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDataList.swift; sourceTree = "<group>"; };
@@ -153,7 +155,7 @@
 		781B6D5825EFEC0500C5D25B = {
 			isa = PBXGroup;
 			children = (
-				7880B37825F51D170031CDA8 /* GoogleService-Info.plist */,
+				786F15D02636F4280048E3DB /* GoogleService-Info.plist */,
 				781B6D6325EFEC0500C5D25B /* food-order-application */,
 				781B6D7A25EFEC0600C5D25B /* food-order-applicationTests */,
 				781B6D8525EFEC0600C5D25B /* food-order-applicationUITests */,
@@ -220,6 +222,7 @@
 				7801FDBC25F2A1E10046E2E4 /* OrderTableCustomCell.swift */,
 				7801FDC125F2A2050046E2E4 /* ProfileViewController.swift */,
 				7801FDC625F2A2220046E2E4 /* StoreTabBarController.swift */,
+				786F15E526370F410048E3DB /* StoreSegmentController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -363,7 +366,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				781B6D7125EFEC0600C5D25B /* LaunchScreen.storyboard in Resources */,
-				7880B37925F51D170031CDA8 /* GoogleService-Info.plist in Resources */,
+				786F15D12636F4280048E3DB /* GoogleService-Info.plist in Resources */,
 				781B6D6E25EFEC0600C5D25B /* Assets.xcassets in Resources */,
 				781B6D6C25EFEC0500C5D25B /* Main.storyboard in Resources */,
 			);
@@ -500,6 +503,7 @@
 				7801FDC725F2A2220046E2E4 /* StoreTabBarController.swift in Sources */,
 				7801FDD625F2A3E50046E2E4 /* OrderData.swift in Sources */,
 				781B6D6525EFEC0500C5D25B /* AppDelegate.swift in Sources */,
+				786F15E626370F410048E3DB /* StoreSegmentController.swift in Sources */,
 				78F847F925F15FB90099669D /* CardModel.swift in Sources */,
 				781B6D6725EFEC0500C5D25B /* SceneDelegate.swift in Sources */,
 				7819182025F2801D0091D632 /* ForgetPassword.swift in Sources */,

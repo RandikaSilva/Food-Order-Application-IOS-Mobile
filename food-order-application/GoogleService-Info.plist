@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>77621183195-obb1q1np79h234saemdmb93al37qvf9d.apps.googleusercontent.com</string>
+	<string>663276086612-2q58a3ka1ajeoalu2ev4ignhajc4nkmr.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.77621183195-obb1q1np79h234saemdmb93al37qvf9d</string>
+	<string>com.googleusercontent.apps.663276086612-2q58a3ka1ajeoalu2ev4ignhajc4nkmr</string>
 	<key>API_KEY</key>
-	<string>AIzaSyDHeFlevBJW__GTPrOPMBYx5Y1yflGcKsg</string>
+	<string>AIzaSyAU-TWdrM-fw0CqUOWitDFN1CNc1rnIDlw</string>
 	<key>GCM_SENDER_ID</key>
-	<string>77621183195</string>
+	<string>663276086612</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>firebasenibm</string>
+	<string>calculator.food-order-application</string>
 	<key>PROJECT_ID</key>
-	<string>nibm-3dc0e</string>
+	<string>food-order-appication</string>
 	<key>STORAGE_BUCKET</key>
-	<string>nibm-3dc0e.appspot.com</string>
+	<string>food-order-appication.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:77621183195:ios:0bd215972ae04bed3242fe</string>
+	<string>1:663276086612:ios:7c6c9d5f13e247cc7c54c1</string>
+	<key>DATABASE_URL</key>
+	<string>https://food-order-appication-default-rtdb.firebaseio.com</string>
 </dict>
 </plist>
