@@ -28,13 +28,17 @@
 		781B6D7C25EFEC0600C5D25B /* food_order_applicationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781B6D7B25EFEC0600C5D25B /* food_order_applicationTests.swift */; };
 		781B6D8725EFEC0600C5D25B /* food_order_applicationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781B6D8625EFEC0600C5D25B /* food_order_applicationUITests.swift */; };
 		782C657D263B365C00E76839 /* ItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782C657C263B365C00E76839 /* ItemModel.swift */; };
+		782C65C5263B485400E76839 /* FirebaseServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782C65C4263B485400E76839 /* FirebaseServices.swift */; };
+		782C65CA263B48A600E76839 /* FirebaseServiceOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782C65C9263B48A600E76839 /* FirebaseServiceOrder.swift */; };
+		782C661B263B590500E76839 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782C661A263B590500E76839 /* NotificationService.swift */; };
+		782C6620263B592A00E76839 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782C661F263B592A00E76839 /* LocationService.swift */; };
+		782C6625263B599D00E76839 /* LoacationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782C6624263B599D00E76839 /* LoacationModel.swift */; };
 		786F15D12636F4280048E3DB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 786F15D02636F4280048E3DB /* GoogleService-Info.plist */; };
 		786F15E626370F410048E3DB /* StoreSegmentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786F15E526370F410048E3DB /* StoreSegmentController.swift */; };
 		78F847DF25F15E760099669D /* FoodDataList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F847DE25F15E760099669D /* FoodDataList.swift */; };
 		78F847E725F15EC00099669D /* FoodItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F847E625F15EC00099669D /* FoodItemModel.swift */; };
 		78F847EC25F15F800099669D /* CardDataList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F847EB25F15F800099669D /* CardDataList.swift */; };
 		78F847F925F15FB90099669D /* CardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F847F825F15FB90099669D /* CardModel.swift */; };
-		78F8480125F1631F0099669D /* FirebaseServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F8480025F1631F0099669D /* FirebaseServices.swift */; };
 		833EF2C4BD6C72F8010EC1B2 /* Pods_food_order_applicationTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 325B1BA48071AF59E81CD66D /* Pods_food_order_applicationTests.framework */; };
 		BFC3782E29102177CFB81A15 /* Pods_food_order_application_food_order_applicationUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6651B1D5D0D4546AABAC8D6F /* Pods_food_order_application_food_order_applicationUITests.framework */; };
 		C9426B84736FB276D3FCF2EF /* Pods_food_order_application.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDE01BE7D69BC9C60B6D3E4B /* Pods_food_order_application.framework */; };
@@ -90,13 +94,17 @@
 		781B6D8625EFEC0600C5D25B /* food_order_applicationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = food_order_applicationUITests.swift; sourceTree = "<group>"; };
 		781B6D8825EFEC0600C5D25B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		782C657C263B365C00E76839 /* ItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemModel.swift; sourceTree = "<group>"; };
+		782C65C4263B485400E76839 /* FirebaseServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseServices.swift; sourceTree = "<group>"; };
+		782C65C9263B48A600E76839 /* FirebaseServiceOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseServiceOrder.swift; sourceTree = "<group>"; };
+		782C661A263B590500E76839 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		782C661F263B592A00E76839 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
+		782C6624263B599D00E76839 /* LoacationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoacationModel.swift; sourceTree = "<group>"; };
 		786F15D02636F4280048E3DB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		786F15E526370F410048E3DB /* StoreSegmentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreSegmentController.swift; sourceTree = "<group>"; };
 		78F847DE25F15E760099669D /* FoodDataList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDataList.swift; sourceTree = "<group>"; };
 		78F847E625F15EC00099669D /* FoodItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodItemModel.swift; sourceTree = "<group>"; };
 		78F847EB25F15F800099669D /* CardDataList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDataList.swift; sourceTree = "<group>"; };
 		78F847F825F15FB90099669D /* CardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModel.swift; sourceTree = "<group>"; };
-		78F8480025F1631F0099669D /* FirebaseServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseServices.swift; sourceTree = "<group>"; };
 		C6F7CB26D63495AC6F340738 /* Pods-food-order-application.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-food-order-application.release.xcconfig"; path = "Target Support Files/Pods-food-order-application/Pods-food-order-application.release.xcconfig"; sourceTree = "<group>"; };
 		C8691005F2D727107BE66509 /* Pods-food-order-application.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-food-order-application.debug.xcconfig"; path = "Target Support Files/Pods-food-order-application/Pods-food-order-application.debug.xcconfig"; sourceTree = "<group>"; };
 		E5181E63DA0C2A86242AD1EA /* Pods-food-order-application-food-order-applicationUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-food-order-application-food-order-applicationUITests.debug.xcconfig"; path = "Target Support Files/Pods-food-order-application-food-order-applicationUITests/Pods-food-order-application-food-order-applicationUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -232,7 +240,10 @@
 		78F847DB25F15E350099669D /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				78F8480025F1631F0099669D /* FirebaseServices.swift */,
+				782C65C4263B485400E76839 /* FirebaseServices.swift */,
+				782C65C9263B48A600E76839 /* FirebaseServiceOrder.swift */,
+				782C661A263B590500E76839 /* NotificationService.swift */,
+				782C661F263B592A00E76839 /* LocationService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -245,6 +256,7 @@
 				7801FDCB25F2A3BE0046E2E4 /* OrderModel.swift */,
 				7801FDD025F2A3D00046E2E4 /* UserModel.swift */,
 				782C657C263B365C00E76839 /* ItemModel.swift */,
+				782C6624263B599D00E76839 /* LoacationModel.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -499,10 +511,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				782C6625263B599D00E76839 /* LoacationModel.swift in Sources */,
 				7801FDCC25F2A3BE0046E2E4 /* OrderModel.swift in Sources */,
 				7801FDBD25F2A1E10046E2E4 /* OrderTableCustomCell.swift in Sources */,
 				781B6D6925EFEC0500C5D25B /* ViewController.swift in Sources */,
 				78F847E725F15EC00099669D /* FoodItemModel.swift in Sources */,
+				782C661B263B590500E76839 /* NotificationService.swift in Sources */,
 				782C657D263B365C00E76839 /* ItemModel.swift in Sources */,
 				7801FDC725F2A2220046E2E4 /* StoreTabBarController.swift in Sources */,
 				7801FDD625F2A3E50046E2E4 /* OrderData.swift in Sources */,
@@ -511,15 +525,17 @@
 				78F847F925F15FB90099669D /* CardModel.swift in Sources */,
 				781B6D6725EFEC0500C5D25B /* SceneDelegate.swift in Sources */,
 				7819182025F2801D0091D632 /* ForgetPassword.swift in Sources */,
+				782C65C5263B485400E76839 /* FirebaseServices.swift in Sources */,
 				78F847DF25F15E760099669D /* FoodDataList.swift in Sources */,
 				781917E825F201190091D632 /* ReistrationController.swift in Sources */,
-				78F8480125F1631F0099669D /* FirebaseServices.swift in Sources */,
 				78F847EC25F15F800099669D /* CardDataList.swift in Sources */,
+				782C6620263B592A00E76839 /* LocationService.swift in Sources */,
 				781917F225F201A80091D632 /* StorePageController.swift in Sources */,
 				7801FDC225F2A2050046E2E4 /* ProfileViewController.swift in Sources */,
 				781917F725F241120091D632 /* FoodViewController.swift in Sources */,
 				7801FDD125F2A3D00046E2E4 /* UserModel.swift in Sources */,
 				7801FDDC25F2A3FF0046E2E4 /* UserData.swift in Sources */,
+				782C65CA263B48A600E76839 /* FirebaseServiceOrder.swift in Sources */,
 				781917ED25F2016D0091D632 /* LoginController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

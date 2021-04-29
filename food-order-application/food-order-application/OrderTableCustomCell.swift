@@ -18,7 +18,7 @@ class OrderViewController: UIViewController {
     @IBOutlet weak var tableOrderView: UITableView!
     @IBOutlet weak var noDataView: UIView!
     
-    let firestoreDataService = FirebaseService()
+    let firestoreDataService = FirebaseServiceOrder()
     
     override func viewDidLoad() {
         super.viewDidLoad()

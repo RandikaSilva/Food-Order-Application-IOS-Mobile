@@ -7,15 +7,20 @@
 
 import UIKit;
 import Firebase;
+import CoreLocation
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+    let locationManager = CLLocationManager()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
+        NotificationService().configure(context: self, application: application)
+        LocationService().configure(context: self , locationManager: self.locationManager)
+        
+        FirebaseService().listenToResturentLiveLocation()
         return true
     }
 
@@ -34,4 +39,54 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
+}
+
+extension AppDelegate: UNUserNotificationCenterDelegate {
+
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        print(response.notification.request.content.userInfo)
+        completionHandler()
+    }
+
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.banner, .badge, .sound])
+    }
+}
+
+
+extension AppDelegate: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        switch status {
+            case .denied: // Setting option: Never
+                print("LocationManager didChangeAuthorization denied")
+            case .notDetermined: // Setting option: Ask Next Time
+                print("LocationManager didChangeAuthorization notDetermined")
+            case .authorizedWhenInUse: // Setting option: While Using the App
+                print("LocationManager didChangeAuthorization authorizedWhenInUse")
+                self.locationManager.requestLocation()
+            case .authorizedAlways: // Setting option: Always
+                print("LocationManager didChangeAuthorization authorizedAlways")
+                self.locationManager.requestLocation()
+            case .restricted: // Restricted by parental control
+                print("LocationManager didChangeAuthorization restricted")
+            default:
+                print("LocationManager didChangeAuthorization")
+        }
+  }
+
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let gpsLatitude = manager.location?.coordinate.latitude ?? 0.0
+        let gpsLongitude = manager.location?.coordinate.longitude ?? 0.0
+        let gpsLocation = CLLocation(latitude: gpsLatitude, longitude: gpsLongitude)
+        let resturentLocation = CLLocation(latitude: RESTURENTLOCATION.latitude, longitude: RESTURENTLOCATION.longitude)
+        LocationService().calculateDistance(gpsLocation: gpsLocation, resturentLocation: resturentLocation)
+    }
+  
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("LocationManager didFailWithError \(error.localizedDescription)")
+        if let error = error as? CLError, error.code == .denied {
+            self.locationManager.stopMonitoringSignificantLocationChanges()
+           return
+        }
+    }
 }

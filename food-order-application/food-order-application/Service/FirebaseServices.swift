@@ -2,7 +2,7 @@
 //  FirebaseServices.swift
 //  food-order-application
 //
-//  Created by Lasitha on 2021-03-05.
+//  Created by Lasitha on 2021-04-30.
 //
 
 import UIKit;
@@ -10,9 +10,12 @@ import FirebaseAuth;
 import FirebaseFirestore;
 
 import FirebaseDatabase
+import CoreLocation
 
 class FirebaseService: NSObject {
     let db = Firestore.firestore()
+    
+    let notificationService = NotificationService()
     
     func registerUser(emailAddress:String,mobileNumber:String,password:String,result: @escaping (_ authResult: Int?)->Void){
         Auth.auth().createUser(withEmail: emailAddress, password: password) { (response, error) in
@@ -113,7 +116,8 @@ class FirebaseService: NSObject {
             "userEmailAddress":order.userEmailAddress,
             "items":order.toAnyObject(),
             "total":order.total,
-            "status":order.status
+            "status":order.status,
+            "timestamp":order.timestamp
         ]){ err in
             if err != nil{
                 completion(500)
@@ -130,13 +134,17 @@ class FirebaseService: NSObject {
         statusData.isRecieved=false
         statusData.orderId=order.orderId
         var orderData = statusData.asDictionary
+        print(UserData.mobileNumber)
+        print(order.orderId)
         let ref = Database.database().reference().child(UserData.mobileNumber).child(order.orderId)
         ref.setValue(orderData)
     }
     
-    func fetchItemsData(categoryId:Int=0,completion: @escaping (Bool)->()) {
+ 
+    
+    func fetchItemsData(category:String="Other",completion: @escaping (Bool)->()) {
         var itemList:[Item]=[]
-        db.collection("items").whereField("categoryId", isEqualTo: categoryId).getDocuments() { (querySnapshot, err) in
+        db.collection("items").whereField("category", isEqualTo: category).getDocuments() { (querySnapshot, err) in
             if let err = err {
                 completion(false)
             } else {
@@ -148,7 +156,8 @@ class FirebaseService: NSObject {
                     let itemPrice=document.data()["itemPrice"] as! Float
                     let itemDiscount=document.data()["itemDiscount"] as! Float
                     let isAvailable=document.data()["isAvailable"] as! Bool
-                    itemList.append(Item(itemId: itemId, itemName: itemName, itemThumbnail: itemThumbnail, itemDescription: itemDescription, itemPrice: itemPrice,itemDiscount: itemDiscount,isAvailable: isAvailable))
+                    let category=document.data()["category"] as! String
+                    itemList.append(Item(itemId: itemId, itemName: itemName, itemThumbnail: itemThumbnail, itemDescription: itemDescription, itemPrice: itemPrice,itemDiscount: itemDiscount,isAvailable: isAvailable,category: category))
                 }
                 populateFoodList(items: itemList)
                 completion(true)
@@ -156,25 +165,68 @@ class FirebaseService: NSObject {
         }
     }
     
-    func getAllOrders(completion: @escaping (Any)->()){
-        var orders:[OrderModel] = []
-        print(UserData.emailAddress)
-        db.collection("orders").whereField("userEmailAddress", isEqualTo: UserData.emailAddress).addSnapshotListener { querySnapshot, error in
-            guard let documents = querySnapshot?.documents else {
-                print("Error fetching documents: \(error!)")
-                return
+    
+    func listenToResturentLiveLocation(){
+        let ref = Database.database().reference()
+        ref.observe(DataEventType.value, with: { (snapshot) in
+            let postDict = snapshot.value as? [String : AnyObject] ?? [:]
+//            let latitude =  postDict["RESTURENTLOCATION"]?["LATITUDE"] as! Double
+//            let longitude = postDict["RESTURENTLOCATION"]?["LONGITUDE"] as! Double
+//            RESTURENTLOCATION.latitude=latitude
+//            RESTURENTLOCATION.longitude=longitude
+        })
+    }
+    
+    func changeOrderStatus(orderId:String, status:Int, completion: @escaping (Int)->()){
+        db.collection("orders").document(orderId).updateData(["status":status]){
+            err in
+            if let err = err {
+                completion(500)
+            } else {
+                FirebaseService().updateOrderStatus(orderId: orderId, status: status)
+                completion(204)
             }
-            for document in querySnapshot!.documents {
-                let orderId:String=document.data()["orderId"] as! String
-                let userEmailAddress:String=document.data()["userEmailAddress"] as! String
-                var items:[CartModel]=[]
-                let total:Float=document.data()["total"] as! Float
-                let status:Int=document.data()["status"] as! Int
-                orders.append(OrderModel(orderId: orderId, userEmailAddress: userEmailAddress, items: items, total: total, status: status))
-            }
-            populateOrderList(orders: orders)
-            completion(orders)
         }
+    }
+    
+    
+    func listenToOrderStatus(){
+        let ref = Database.database().reference().child(UserData.mobileNumber)
+        ref.observe(DataEventType.value, with: { (snapshot) in
+            
+            if !snapshot.exists() {
+                    return
+            }
+            var data = snapshot.value as! [String: Any]
+            for (key,value) in data{
+                let statusData = value as! [String:Any]
+                var orderStatusData:StatusDataModel=StatusDataModel()
+                orderStatusData.orderId=statusData["orderId"] as! String
+                orderStatusData.status=statusData["status"] as! Int
+                orderStatusData.isRecieved=statusData["isRecieved"] as! Bool
+                if orderStatusData.status != 0 && orderStatusData.status != 3{
+                    if orderStatusData.isRecieved == false{
+                        self.notificationService.pushNotification(orderId: orderStatusData.orderId, orderStatus: orderStatusData.status){
+                            result in
+                            if result == true{
+                                self.markOrderAsRecieved(orderStatusData: orderStatusData,key: key)
+                            }
+                        }
+                    }
+                }
+            }
+        })
+    }
+    
+    func markOrderAsRecieved(orderStatusData:StatusDataModel,key:String){
+        orderStatusData.isRecieved=true
+        print("Updating order status")
+        let ref = Database.database().reference().child(UserData.mobileNumber).child(key).setValue(orderStatusData.asDictionary)
+    }
+    
+    func updateOrderStatus(orderId:String,status:Int){
+        let ref = Database.database().reference().child(UserData.mobileNumber).child(orderId)
+        ref.updateChildValues(["status":status,"isRecieved":false])
     }
     
 }

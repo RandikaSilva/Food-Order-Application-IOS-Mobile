@@ -29,14 +29,13 @@ class StorePageViewController: UIViewController {
     @IBOutlet weak var cartTableView: UITableView!
     @IBOutlet weak var lblItemCount: UILabel!
     @IBOutlet weak var foodCartView: UIView!
-    
-    
+    @IBOutlet weak var lblQtyCount: UILabel!
     var floatingButton = MDCFloatingButton()
     var firebaseFoodData=FirebaseService()
     let firestoreDataService = FirebaseService()
     
     @IBAction func btnFastFood(_ sender: Any) {
-        self.firestoreDataService.fetchItemsData(categoryId: 0){
+        self.firestoreDataService.fetchItemsData(category: "Burgers"){
             completion in
             
             if completion{
@@ -55,7 +54,7 @@ class StorePageViewController: UIViewController {
     }
     
     @IBAction func btnRiceCurry(_ sender: Any) {
-        self.firestoreDataService.fetchItemsData(categoryId: 2){
+        self.firestoreDataService.fetchItemsData(category: "Srilankan"){
             completion in
             
             if completion{
@@ -75,7 +74,8 @@ class StorePageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.firestoreDataService.fetchItemsData(categoryId: 0){
+        FirebaseService().listenToOrderStatus();
+        self.firestoreDataService.fetchItemsData(category: "Burgers"){
             completion in
             
             if completion{
@@ -89,7 +89,10 @@ class StorePageViewController: UIViewController {
                 self.cartTableView.dataSource=self
                 self.storeTableView.reloadData()
                 print(ItemData.itemList)
+            }else{
+                print("#######")
             }
+            
         }
     }
     
@@ -125,9 +128,9 @@ class StorePageViewController: UIViewController {
             }else{
                 self.showAlert(title: "Oops!", message: "Unable to place order. Please try again")
             }
+            
         }
     }
-    
     
     @IBAction func stpQtyUpdate(_ sender: UIStepper) {
         let itemId = sender.accessibilityIdentifier
@@ -151,7 +154,6 @@ class StorePageViewController: UIViewController {
 
 extension StorePageViewController:UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(tableView)
         if tableView == storeTableView{
             let foodViewController = storyboard?.instantiateViewController(withIdentifier:"FoodView") as? FoodViewController
             foodViewController?.itemDetails = ItemData.itemList[indexPath.row]
