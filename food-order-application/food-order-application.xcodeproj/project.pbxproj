@@ -27,6 +27,7 @@
 		781B6D7125EFEC0600C5D25B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 781B6D6F25EFEC0600C5D25B /* LaunchScreen.storyboard */; };
 		781B6D7C25EFEC0600C5D25B /* food_order_applicationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781B6D7B25EFEC0600C5D25B /* food_order_applicationTests.swift */; };
 		781B6D8725EFEC0600C5D25B /* food_order_applicationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781B6D8625EFEC0600C5D25B /* food_order_applicationUITests.swift */; };
+		782C657D263B365C00E76839 /* ItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782C657C263B365C00E76839 /* ItemModel.swift */; };
 		786F15D12636F4280048E3DB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 786F15D02636F4280048E3DB /* GoogleService-Info.plist */; };
 		786F15E626370F410048E3DB /* StoreSegmentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786F15E526370F410048E3DB /* StoreSegmentController.swift */; };
 		78F847DF25F15E760099669D /* FoodDataList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F847DE25F15E760099669D /* FoodDataList.swift */; };
@@ -88,6 +89,7 @@
 		781B6D8225EFEC0600C5D25B /* food-order-applicationUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "food-order-applicationUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		781B6D8625EFEC0600C5D25B /* food_order_applicationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = food_order_applicationUITests.swift; sourceTree = "<group>"; };
 		781B6D8825EFEC0600C5D25B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		782C657C263B365C00E76839 /* ItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemModel.swift; sourceTree = "<group>"; };
 		786F15D02636F4280048E3DB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		786F15E526370F410048E3DB /* StoreSegmentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreSegmentController.swift; sourceTree = "<group>"; };
 		78F847DE25F15E760099669D /* FoodDataList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDataList.swift; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 				78F847F825F15FB90099669D /* CardModel.swift */,
 				7801FDCB25F2A3BE0046E2E4 /* OrderModel.swift */,
 				7801FDD025F2A3D00046E2E4 /* UserModel.swift */,
+				782C657C263B365C00E76839 /* ItemModel.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -500,6 +503,7 @@
 				7801FDBD25F2A1E10046E2E4 /* OrderTableCustomCell.swift in Sources */,
 				781B6D6925EFEC0500C5D25B /* ViewController.swift in Sources */,
 				78F847E725F15EC00099669D /* FoodItemModel.swift in Sources */,
+				782C657D263B365C00E76839 /* ItemModel.swift in Sources */,
 				7801FDC725F2A2220046E2E4 /* StoreTabBarController.swift in Sources */,
 				7801FDD625F2A3E50046E2E4 /* OrderData.swift in Sources */,
 				781B6D6525EFEC0500C5D25B /* AppDelegate.swift in Sources */,

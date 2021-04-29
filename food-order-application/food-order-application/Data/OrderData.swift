@@ -10,14 +10,18 @@
 import Foundation
 
 struct OrderData {
-    static var orderId:Int = 1
-    static var orderList:[OrderModel] = []{
-        didSet{
-            orderId+=1
-        }
-    }
+    static var orderList:[String:OrderModel] = [String: OrderModel]()
 }
 
-func addNewOrder(order:OrderModel){
-    OrderData.orderList.append(order)
+func populateOrderList(orders:[OrderModel]){
+    var orderList:[String:OrderModel]=[String: OrderModel]()
+    for order in orders{
+        orderList[order.orderId]=order
+    }
+    OrderData.orderList=orderList
+}
+
+func generateOrderId()->String{
+    let uuid = NSUUID().uuidString
+    return uuid
 }

@@ -7,14 +7,23 @@
 
 import Foundation
 
+
 struct CartData {
-    static var cartList:[CartModel] = []
+    static var cartItemList:[CartModel] = []
 }
 
 func addNewItem(item:CartModel){
-    CartData.cartList.append(item)
+    CartData.cartItemList.append(item)
 }
 
 func removeCart(){
-    CartData.cartList=[]
+    CartData.cartItemList=[]
+}
+
+func generateOrderTotal()->Float{
+    var total:Float = 0.0
+    for item in CartData.cartItemList{
+        total+=item.totalPrice
+    }
+    return total
 }

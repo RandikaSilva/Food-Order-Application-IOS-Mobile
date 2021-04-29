@@ -9,11 +9,12 @@ import Foundation
 
 var firebaseFoodData=FirebaseService()
 
-struct FoodData {
-    static var foodList:[ItemModel] = []
+struct ItemData {
+    static var itemList:[Item] = []
 }
 
-func populateFoodList(foods:[ItemModel]){
-    FoodData.foodList=foods
-}
 
+func populateFoodList(items:[Item]){
+    ItemData.itemList=items
+    print("Items populated")
+}

@@ -54,7 +54,7 @@ class LoginController: UIViewController {
         {(result:Int?)->Void in
             if(result==1){
                 UserData.emailAddress=self.txtEmailAddress.text!
-                firebaseFoodData.fetchFoodsData()
+                firebaseFoodData.fetchItemsData()
                 { (resultFetch) -> () in
                     if(resultFetch){
                         firebaseFoodData.fetchUsersData(){
@@ -78,7 +78,7 @@ class LoginController: UIViewController {
             }else if(result==3){
                 self.showAlert(title: "Oops!", message: "Username or password is incorrect")
             }else if(result==0){
-                self.showAlert(title: "Oops!", message: "An error occures while registering")
+                self.showAlert(title: "Oops!", message: "An error occures while loggin")
             }
         }
     }

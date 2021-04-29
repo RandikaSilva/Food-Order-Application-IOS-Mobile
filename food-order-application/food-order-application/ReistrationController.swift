@@ -75,7 +75,7 @@ class RegistrationController: UIViewController {
         self.firebaseService.registerUser(emailAddress:txtEmailAddress.text!, mobileNumber: txtMobileNumber.text!, password: txtPassword.text!)
         {(result:Int?)->Void in
             if(result==1){
-                firebaseFoodData.fetchFoodsData()
+                firebaseFoodData.fetchItemsData()
                 { (resultFetch) -> () in
                     if(resultFetch){
                         self.firebaseService.addUserToFirestore(user: UserModel(emailAddress: self.txtEmailAddress.text!, mobileNumber: self.txtMobileNumber.text!))
