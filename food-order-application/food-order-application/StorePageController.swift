@@ -8,6 +8,10 @@
 import UIKit
 import MaterialComponents.MaterialButtons
 
+class CategoryViewCell:UICollectionViewCell{
+    @IBOutlet weak var lblCategoryName: UILabel!
+}
+
 class StoreTableCustomCell: UITableViewCell {
     @IBOutlet weak var imgFoodImage: UIImageView!
     @IBOutlet weak var lblFoodName: UILabel!
@@ -24,84 +28,73 @@ class CartTableCustomCell: UITableViewCell {
 }
 
 class StorePageViewController: UIViewController {
-
+    @IBOutlet weak var stkCartArea: UIStackView!
+    @IBOutlet weak var categoryView: UIView!
+    @IBOutlet weak var lblCategoryName: UILabel!
     @IBOutlet weak var storeTableView: UITableView!
     @IBOutlet weak var cartTableView: UITableView!
     @IBOutlet weak var lblItemCount: UILabel!
-    @IBOutlet weak var foodCartView: UIView!
     @IBOutlet weak var lblQtyCount: UILabel!
+    @IBOutlet weak var clCategoryView: UICollectionView!
+    @IBOutlet weak var selectedCategoryView: UIView!
+    @IBOutlet weak var btnClearCart: UIButton!
+    
     var floatingButton = MDCFloatingButton()
     var firebaseFoodData=FirebaseService()
     let firestoreDataService = FirebaseService()
     
-    @IBAction func btnFastFood(_ sender: Any) {
-        self.firestoreDataService.fetchItemsData(category: "Burgers"){
-            completion in
-            
-            if completion{
-                self.foodCartView.isHidden = (CartData.cartItemList.count==0 ? true:false)
-                self.storeTableView.isHidden = (ItemData.itemList.count==0 ? true:false)
-                self.setFloatingButton()
-                self.lblItemCount.text!=String(CartData.cartItemList.count)+" Items"
-                self.storeTableView.delegate=self
-                self.storeTableView.dataSource=self
-                self.cartTableView.delegate=self
-                self.cartTableView.dataSource=self
-                self.storeTableView.reloadData()
-            }
-            
-        }
-    }
-    
-    @IBAction func btnRiceCurry(_ sender: Any) {
-        self.firestoreDataService.fetchItemsData(category: "Srilankan"){
-            completion in
-            
-            if completion{
-                self.foodCartView.isHidden = (CartData.cartItemList.count==0 ? true:false)
-                self.storeTableView.isHidden = (ItemData.itemList.count==0 ? true:false)
-                self.setFloatingButton()
-                self.lblItemCount.text!=String(CartData.cartItemList.count)+" Items"
-                self.storeTableView.delegate=self
-                self.storeTableView.dataSource=self
-                self.cartTableView.delegate=self
-                self.cartTableView.dataSource=self
-                self.storeTableView.reloadData()
-            }
-            
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        FirebaseService().listenToOrderStatus();
-        self.firestoreDataService.fetchItemsData(category: "Burgers"){
-            completion in
-            
-            if completion{
-                self.foodCartView.isHidden = (CartData.cartItemList.count==0 ? true:false)
-                self.storeTableView.isHidden = (ItemData.itemList.count==0 ? true:false)
-                self.setFloatingButton()
-                self.lblItemCount.text!=String(CartData.cartItemList.count)+" Items"
-                self.storeTableView.delegate=self
-                self.storeTableView.dataSource=self
-                self.cartTableView.delegate=self
-                self.cartTableView.dataSource=self
-                self.storeTableView.reloadData()
-                print(ItemData.itemList)
-            }else{
-                print("#######")
-            }
-            
-        }
+        self.btnClearCart.addTarget(self, action: #selector(self.clearCart(sender:)), for: .touchUpInside)
     }
-    
+    func showAlert(title:String,message:String){
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
     override func viewDidAppear(_ animated: Bool) {
-        foodCartView.isHidden = (CartData.cartItemList.count==0 ? true:false)
-        floatingButton.isHidden = (CartData.cartItemList.count==0 ? true:false)
-        cartTableView.reloadData()
-        storeTableView.reloadData()
-        lblItemCount.text!=String(CartData.cartItemList.count)+" Items"
+        self.setFloatingButton()
+        FirebaseService().listenToOrderStatus()
+        self.firestoreDataService.getAllCategories(){
+            completion in
+            if completion is [CategoryModel]{
+                if CategoryData.categoryList.count != 0{
+                    self.firestoreDataService.fetchItemsData(category: CategoryData.categoryList[0].categoryName){
+                        completion in
+                        if completion{
+                            self.selectedCategoryView.isHidden=false
+                            self.categoryView.isHidden=false
+                            self.lblCategoryName.text=CategoryData.categoryList[0].categoryName
+                            self.stkCartArea.isHidden = (CartData.cartItemList.count==0 ? true:false)
+                            self.lblItemCount.text!=String(CartData.cartItemList.count)+" Items"
+                            self.storeTableView.delegate=self
+                            self.storeTableView.dataSource=self
+                            self.cartTableView.delegate=self
+                            self.cartTableView.dataSource=self
+                            self.clCategoryView.delegate=self
+                            self.clCategoryView.dataSource=self
+                            self.storeTableView.reloadData()
+                            self.clCategoryView.reloadData()
+                        }
+                    }
+                }else{
+                    self.selectedCategoryView.isHidden=true
+                    self.categoryView.isHidden=true
+                    self.stkCartArea.isHidden = (CartData.cartItemList.count==0 ? true:false)
+                    self.lblItemCount.text!=String(CartData.cartItemList.count)+" Items"
+                    self.storeTableView.delegate=self
+                    self.storeTableView.dataSource=self
+                    self.cartTableView.delegate=self
+                    self.cartTableView.dataSource=self
+                    self.clCategoryView.delegate=self
+                    self.clCategoryView.dataSource=self
+                    self.storeTableView.reloadData()
+                    self.clCategoryView.reloadData()
+                }
+            }else{
+                self.showAlert(title: "Ss", message: "sss")
+            }
+        }
     }
     
     func setFloatingButton() {
@@ -113,25 +106,9 @@ class StorePageViewController: UIViewController {
         view.addSubview(floatingButton)
         view.addConstraint(NSLayoutConstraint(item: floatingButton, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1.0, constant:-50))
         view.addConstraint(NSLayoutConstraint(item: floatingButton, attribute: .centerX , relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1.0, constant: 0))
+        floatingButton.isHidden=(CartData.cartItemList.count==0 ? true:false)
     }
-    
-    @objc func tap(_ sender: Any) {
-        let order = OrderModel(orderId: generateOrderId(), userEmailAddress: UserData.emailAddress, items: CartData.cartItemList, total: generateOrderTotal(), status: 0)
-        OrderData.orderList[order.orderId]=order
-        
-        self.firestoreDataService.addNewOrder(order: order){
-            completion in
-            
-            if completion==201{
-                let orderViewController = self.storyboard?.instantiateViewController(withIdentifier:"OrderView") as? OrderViewController
-                self.navigationController?.pushViewController(orderViewController!, animated: true)
-            }else{
-                self.showAlert(title: "Oops!", message: "Unable to place order. Please try again")
-            }
-            
-        }
-    }
-    
+
     @IBAction func stpQtyUpdate(_ sender: UIStepper) {
         let itemId = sender.accessibilityIdentifier
         for item in CartData.cartItemList{
@@ -144,10 +121,31 @@ class StorePageViewController: UIViewController {
         cartTableView.reloadData()
     }
     
-    func showAlert(title:String,message:String){
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
+    @objc func clearCart(sender:UIButton){
+        CartData.cartItemList.removeAll()
+        self.stkCartArea.isHidden = (CartData.cartItemList.count==0 ? true:false)
+    }
+    
+    @objc func tap(_ sender: Any) {
+        if CartData.cartItemList.count != 0{
+            let order = OrderModel(orderId: generateOrderId(), userEmailAddress: UserData.emailAddress, items: CartData.cartItemList, total: generateOrderTotal(), status: 0,userId: UserData.uuid)
+            OrderData.orderList[order.orderId]=order
+            
+            self.firestoreDataService.addNewOrder(order: order){
+                completion in
+                
+                if completion==201{
+                    let orderViewController = self.storyboard?.instantiateViewController(withIdentifier:"OrderView") as? OrderViewController
+                    CartData.cartItemList.removeAll()
+                    self.navigationController?.pushViewController(orderViewController!, animated: true)
+                }else{
+                    self.showAlert(title: "Oops!", message: "Unable to place order. Please try again")
+                }
+                
+            }
+        }else{
+            self.showAlert(title: "Oops!", message: "No any items in cart")
+        }
     }
     
 }
@@ -172,6 +170,17 @@ extension StorePageViewController:UITableViewDataSource{
             return 0
         }
     }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        if ItemData.itemList.count == 0 {
+            self.storeTableView.setEmptyView(title: "No items for category", message: "Your items will display in here")
+        } else {
+            self.storeTableView.restore()
+        }
+        return 1
+    }
+    
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView == storeTableView{
@@ -212,9 +221,7 @@ extension StorePageViewController:UITableViewDataSource{
             let cell:UITableViewCell=UITableViewCell()
             return cell
         }
-        
     }
-
 }
 
 extension UIImageView {
@@ -233,6 +240,85 @@ extension UIImageView {
             })
 
         }).resume()
+    }
+}
 
+extension StorePageViewController:UICollectionViewDelegate{
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.lblCategoryName.text=CategoryData.categoryList[indexPath.row].categoryName
+        self.firestoreDataService.fetchItems(category: CategoryData.categoryList[indexPath.row].categoryName){
+            completion in
+
+            if completion{
+                self.stkCartArea.isHidden = (CartData.cartItemList.count==0 ? true:false)
+                self.setFloatingButton()
+                self.lblItemCount.text!=String(CartData.cartItemList.count)+" Items"
+                self.storeTableView.delegate=self
+                self.storeTableView.dataSource=self
+                self.cartTableView.delegate=self
+                self.cartTableView.dataSource=self
+                self.storeTableView.reloadData()
+            }
+        }
+    }
+}
+
+extension StorePageViewController:UICollectionViewDataSource{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return CategoryData.categoryList.count
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier:"CategoryViewCellReuseIdentifier",
+                                                         for: indexPath) as? CategoryViewCell {
+            let name = CategoryData.categoryList[indexPath.row].categoryName
+            cell.lblCategoryName.text=name
+            
+            cell.backgroundColor=UIColor.systemGray
+            return cell
+        }
+        return UICollectionViewCell()
+    }
+}
+
+extension StorePageViewController: UICollectionViewDelegateFlowLayout {
+    private func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+            let itemsPerRow:CGFloat = 4
+            let hardCodedPadding:CGFloat = 5
+            let itemWidth = (collectionView.bounds.width / itemsPerRow) - hardCodedPadding
+            let itemHeight = collectionView.bounds.height - (2 * hardCodedPadding)
+            return CGSize(width: itemWidth, height: itemHeight)
+        }
+}
+
+extension UITableView {
+    func setEmptyView(title: String, message: String) {
+        let emptyView = UIView(frame: CGRect(x: self.center.x, y: self.center.y, width: self.bounds.size.width, height: self.bounds.size.height))
+        let titleLabel = UILabel()
+        let messageLabel = UILabel()
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        messageLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.textColor = UIColor.black
+        titleLabel.font = UIFont(name: "HelveticaNeue-Bold", size: 18)
+        messageLabel.textColor = UIColor.lightGray
+        messageLabel.font = UIFont(name: "HelveticaNeue-Regular", size: 17)
+        emptyView.addSubview(titleLabel)
+        emptyView.addSubview(messageLabel)
+        titleLabel.centerYAnchor.constraint(equalTo: emptyView.centerYAnchor).isActive = true
+        titleLabel.centerXAnchor.constraint(equalTo: emptyView.centerXAnchor).isActive = true
+        messageLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5).isActive = true
+        messageLabel.leftAnchor.constraint(equalTo: emptyView.leftAnchor, constant: 20).isActive = true
+        messageLabel.rightAnchor.constraint(equalTo: emptyView.rightAnchor, constant: -20).isActive = true
+        titleLabel.text = title
+        messageLabel.text = message
+        messageLabel.numberOfLines = 0
+        messageLabel.textAlignment = .center
+        
+        self.backgroundView = emptyView
+        self.separatorStyle = .none
+    }
+    func restore() {
+        self.backgroundView = nil
+        self.separatorStyle = .singleLine
     }
 }

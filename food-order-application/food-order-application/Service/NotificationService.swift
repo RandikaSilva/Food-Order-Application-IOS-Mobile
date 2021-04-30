@@ -58,7 +58,7 @@ class NotificationService: NSObject {
         switch orderStatus {
             case 1:
                 print("Your order is accepted and start to proccess")
-                self.registerNotification(title: "Alert", subtitle: "Order", body: "Your order is accepted and start to proccess", time: 1.0, isRepeat: false, orderId: orderId){completion in
+                self.registerNotification(title: "Alert", subtitle: "Order", body: "Your order in proccess now", time: 1.0, isRepeat: false, orderId: orderId){completion in
                     if completion==true{
                         result(true)
                     }else{
@@ -67,7 +67,7 @@ class NotificationService: NSObject {
                 }
             case 2:
                 print("Your order is ready! Please come and pick your order")
-                self.registerNotification(title: "Alert", subtitle: "Order", body: "Your order is ready! Please come and pick your order", time: 1.0, isRepeat: false, orderId: orderId){completion in
+                self.registerNotification(title: "Alert", subtitle: "Order", body: "Your order is ready!", time: 1.0, isRepeat: false, orderId: orderId){completion in
                     if completion==true{
                         result(true)
                     }else{
@@ -76,7 +76,7 @@ class NotificationService: NSObject {
                 }
             case 4:
                 print("Your order is successfully completed. Thank you")
-                self.registerNotification(title: "Alert", subtitle: "Order", body: "Your order is successfully completed. Thank you", time: 1.0, isRepeat: false, orderId: orderId){completion in
+                self.registerNotification(title: "Alert", subtitle: "Order", body: "Your order is successfully completed.", time: 1.0, isRepeat: false, orderId: orderId){completion in
                     if completion==true{
                         result(true)
                     }else{
@@ -85,7 +85,7 @@ class NotificationService: NSObject {
                 }
             case 5:
                 print("Sorry! We are unable to accept your order at the moment")
-                self.registerNotification(title: "Alert", subtitle: "Order", body: "Sorry! We are unable to accept your order at the moment", time: 1.0, isRepeat: false, orderId: orderId){completion in
+                self.registerNotification(title: "Alert", subtitle: "Order", body: "Sorry! We are unable to accept your order.", time: 1.0, isRepeat: false, orderId: orderId){completion in
                     if completion==true{
                         result(true)
                     }else{

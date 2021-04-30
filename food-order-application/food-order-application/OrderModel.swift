@@ -14,18 +14,20 @@ import UIKit
 class OrderModel: NSObject {
     var orderId:String
     var userEmailAddress:String
+    var userId:String
     var items:[CartModel]
     var total:Float
     var status:Int
     var timestamp:Date
     
-    init(orderId:String,userEmailAddress:String,items:[CartModel],total:Float,status:Int,timestamp:Date=Date()) {
+    init(orderId:String,userEmailAddress:String,items:[CartModel],total:Float,status:Int,userId:String,timestamp:Date=Date()) {
         self.orderId=orderId
         self.userEmailAddress=userEmailAddress
         self.items=items
         self.total=total
         self.status=status
         self.timestamp=timestamp
+        self.userId=userId
     }
     
     override init(){
@@ -35,6 +37,7 @@ class OrderModel: NSObject {
         self.status=0
         self.total=0.0
         self.timestamp=Date()
+        self.userId=""
     }
     
     func toAnyObject() -> Any {

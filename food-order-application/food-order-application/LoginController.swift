@@ -23,10 +23,29 @@ class LoginController: UIViewController {
     }
     
     @IBAction func loginUser(_ sender: Any) {
-        if(txtEmailAddress.text != "" && txtPassword.text != ""){
-            login()
-        }else{
-            showAlert(title: "Oops!", message: "Please fill all fields")
+        let user = UserModel(emailAddress: txtEmailAddress.text!, password: txtPassword.text!)
+        self.firebaseService.loginUser(user: user) {
+            result in
+            if result == 200{
+                FirebaseService().fetchUser(user: user){
+                    completion in
+                    if completion == 200{
+                        let storeTabBarController = self.storyboard?.instantiateViewController(withIdentifier:"StoreTabBarController") as? StoreTabBarController
+                        self.navigationController?.setNavigationBarHidden(true, animated: false)
+                        self.navigationItem.leftBarButtonItem=nil
+                        self.navigationItem.hidesBackButton=true
+                        self.navigationController?.pushViewController(storeTabBarController!,animated: true)
+                    }else{
+                        self.showAlert(title: "Oops!", message: "Unable to get user data")
+                    }
+                }
+            }else if(result==400){
+                self.showAlert(title: "Oops!", message: "Email address and password is required")
+            }else if(result==401){
+                self.showAlert(title: "Oops!", message: "Username or password is incorrect")
+            }else if(result==500){
+                self.showAlert(title: "Oops!", message: "An error occures while logging")
+            }
         }
     }
 
@@ -50,35 +69,28 @@ class LoginController: UIViewController {
     }
     
     func login(){
-        self.firebaseService.loginUser(emailAddress:txtEmailAddress.text!,password: txtPassword.text!)
-        {(result:Int?)->Void in
-            if(result==1){
-                UserData.emailAddress=self.txtEmailAddress.text!
-                firebaseFoodData.fetchItemsData()
-                { (resultFetch) -> () in
-                    if(resultFetch){
-                        firebaseFoodData.fetchUsersData(){
-                            (resultFetch) -> () in
-                            if(resultFetch){
-                                let storeTabBarController = self.storyboard?.instantiateViewController(withIdentifier:"StoreTabBarController") as? StoreTabBarController
-                                self.navigationController?.setNavigationBarHidden(true, animated: false)
-                                self.navigationItem.leftBarButtonItem=nil
-                                self.navigationItem.hidesBackButton=true
-                                self.navigationController?.pushViewController(storeTabBarController!,animated: true)
-                            }else{
-                                self.showAlert(title:"Oops!",message:"Unable to load user data from server")
-                            }
-                        }
+        let user = UserModel(emailAddress: txtEmailAddress.text!, password: txtPassword.text!)
+        self.firebaseService.loginUser(user: user) {
+            result in
+            if result == 200{
+                FirebaseService().fetchUser(user: user){
+                    completion in
+                    if completion == 200{
+                        let storeTabBarController = self.storyboard?.instantiateViewController(withIdentifier:"StoreTabBarController") as? StoreTabBarController
+                        self.navigationController?.setNavigationBarHidden(true, animated: false)
+                        self.navigationItem.leftBarButtonItem=nil
+                        self.navigationItem.hidesBackButton=true
+                        self.navigationController?.pushViewController(storeTabBarController!,animated: true)
                     }else{
-                        self.showAlert(title:"Oops!",message:"Unable to load food data from server")
+                        self.showAlert(title: "Oops!", message: "Unable to get user data")
                     }
                 }
-            }else if(result==2){
-                self.showAlert(title: "Oops!", message: "Email is already registered")
-            }else if(result==3){
+            }else if(result==400){
+                self.showAlert(title: "Oops!", message: "Email address and password is required")
+            }else if(result==401){
                 self.showAlert(title: "Oops!", message: "Username or password is incorrect")
-            }else if(result==0){
-                self.showAlert(title: "Oops!", message: "An error occures while loggin")
+            }else if(result==500){
+                self.showAlert(title: "Oops!", message: "An error occures while logging")
             }
         }
     }

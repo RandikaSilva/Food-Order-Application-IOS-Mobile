@@ -17,42 +17,110 @@ class FirebaseService: NSObject {
     
     let notificationService = NotificationService()
     
-    func registerUser(emailAddress:String,mobileNumber:String,password:String,result: @escaping (_ authResult: Int?)->Void){
-        Auth.auth().createUser(withEmail: emailAddress, password: password) { (response, error) in
-            if error != nil {
-                if let errCode = FirebaseAuth.AuthErrorCode(rawValue: error!._code) {
-                    switch errCode {
-                        case .emailAlreadyInUse:
-                            result(2)
-                        default:
-                            result(0)
+    func registerUser(user:UserModel,result: @escaping (_ authResult: Int?)->Void){
+        if (user.emailAddress != "" && user.mobileNumber != "" && user.password != ""){
+            Auth.auth().createUser(withEmail: user.emailAddress, password: user.password) { (response, error) in
+                if error != nil {
+                    if let errCode = FirebaseAuth.AuthErrorCode(rawValue: error!._code) {
+                        switch errCode {
+                            case .emailAlreadyInUse:
+                                result(409)
+                            default:
+                                result(500)
+                        }
+                    }else{
+                        result(500)
+                    }
+                }else {
+                    self.addUserToFirestore(user: user){
+                        completion in
+                        if completion{
+                            user.uuid=(response?.user.uid)!
+                            
+                            UserDefaults.standard.set(true, forKey: "isLogged")
+                            UserDefaults.standard.set(user.emailAddress, forKey: "emailAddress")
+                            UserDefaults.standard.set(user.mobileNumber, forKey: "mobileNumber")
+                            UserDefaults.standard.set(response?.user.uid, forKey: "uuid")
+                            
+                            UserData.emailAddress=user.emailAddress
+                            UserData.mobileNumber=user.mobileNumber
+                            UserData.uuid=(response?.user.uid)!
+                            
+                            result(201)
+                        }else{
+                            result(500)
+                        }
                     }
                 }
-            }else {
-                result(1)
             }
+        }else{
+            result(400)
         }
     }
-    func loginUser(emailAddress:String,password:String,result: @escaping (_ authResult: Int?)->Void){
-        Auth.auth().signIn(withEmail: emailAddress, password: password) { (response, error) in
-            if error != nil {
-                if let errCode = FirebaseAuth.AuthErrorCode(rawValue: error!._code) {
-                    switch errCode {
-                        case .invalidCredential:
-                            result(3)
-                        case .emailAlreadyInUse:
-                            result(2)
-                        default:
-                            result(0)
-                    }
-                }
-            }else {
-                result(1)
+    
+    func addUserToFirestore(user:UserModel,completion: @escaping (Bool)->()){
+        db.collection("users").document(user.emailAddress).setData([
+            "emailAddress": user.emailAddress,
+            "mobileNumber": user.mobileNumber,
+            "type":user.type
+        ]) { err in
+            if err != nil{
+                completion(false)
+            } else {
+                completion(true)
             }
         }
     }
     
     
+    func loginUser(user:UserModel,result: @escaping (_ authResult: Int?)->Void){
+        if (user.emailAddress != "" && user.password != ""){
+            Auth.auth().signIn(withEmail: user.emailAddress, password: user.password) { (response, error) in
+                if error != nil {
+                    if let errCode = FirebaseAuth.AuthErrorCode(rawValue: error!._code) {
+                        switch errCode {
+                            case .invalidCredential:
+                                result(401)
+                            case .wrongPassword:
+                                result(401)
+                            case .invalidEmail:
+                                result(401)
+                            default:
+                                result(500)
+                        }
+                    }else{
+                        result(500)
+                    }
+                }else {
+                    UserDefaults.standard.set(true, forKey: "isLogged")
+                    UserDefaults.standard.set(user.emailAddress, forKey: "emailAddress")
+                    UserDefaults.standard.set(response?.user.uid, forKey: "uuid")
+                    UserData.emailAddress=user.emailAddress
+                    UserData.uuid=(response?.user.uid)!
+                    result(200)
+                }
+            }
+        }else{
+            result(400)
+        }
+    }
+    
+    func fetchUser(user:UserModel,completion: @escaping (Int)->()){
+        db.collection("users").document(user.emailAddress).getDocument { (document, error) in
+            if let document = document, document.exists {
+                let user = UserModel()
+                user.emailAddress=document.get("emailAddress") as! String
+                user.mobileNumber=document.get("mobileNumber") as! String
+                user.type=document.get("type") as! Int
+                
+                UserDefaults.standard.set(user.mobileNumber, forKey: "mobileNumber")
+                UserData.mobileNumber=user.mobileNumber
+                completion(200)
+            } else {
+                completion(404)
+            }
+        }
+    }
     
     func forgetPassword(emailAddress:String,result: @escaping (_ authResult: Int?)->Void){
         Auth.auth().sendPasswordReset(withEmail: emailAddress) { (error) in
@@ -117,13 +185,33 @@ class FirebaseService: NSObject {
             "items":order.toAnyObject(),
             "total":order.total,
             "status":order.status,
-            "timestamp":order.timestamp
+            "timestamp":order.timestamp,
+            "userId":order.userId
         ]){ err in
             if err != nil{
                 completion(500)
             } else {
                 FirebaseService().addNewOrderStatus(order: order)
                 completion(201)
+            }
+        }
+    }
+    
+    
+    func getAllCategories(completion: @escaping (Any)->()){
+        db.collection("categories").addSnapshotListener {
+            querySnapshot, error in
+            if let err = error {
+                completion(500)
+            }else{
+                var categories:[CategoryModel]=[]
+                for document in querySnapshot!.documents {
+                    let categoryId=document.data()["categoryId"] as! String
+                    let categoryName=document.data()["categoryName"] as! String
+                    categories.append(CategoryModel(categoryId: categoryId, categoryName: categoryName))
+                }
+                populateCategoryListData(categories: categories)
+                completion(categories)
             }
         }
     }
@@ -136,7 +224,7 @@ class FirebaseService: NSObject {
         var orderData = statusData.asDictionary
         print(UserData.mobileNumber)
         print(order.orderId)
-        let ref = Database.database().reference().child(UserData.mobileNumber).child(order.orderId)
+        let ref = Database.database().reference().child("orders").child(UserData.uuid).child(order.orderId)
         ref.setValue(orderData)
     }
     
@@ -145,6 +233,29 @@ class FirebaseService: NSObject {
     func fetchItemsData(category:String="Other",completion: @escaping (Bool)->()) {
         var itemList:[Item]=[]
         db.collection("items").whereField("category", isEqualTo: category).getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                completion(false)
+            } else {
+                for document in querySnapshot!.documents {
+                    let itemId=document.data()["itemId"] as! String
+                    let itemName=document.data()["itemName"] as! String
+                    let itemDescription=document.data()["itemDescription"] as! String
+                    let itemThumbnail=document.data()["itemThumbnail"] as! String
+                    let itemPrice=document.data()["itemPrice"] as! Float
+                    let itemDiscount=document.data()["itemDiscount"] as! Float
+                    let isAvailable=document.data()["isAvailable"] as! Bool
+                    let category=document.data()["category"] as! String
+                    itemList.append(Item(itemId: itemId, itemName: itemName, itemThumbnail: itemThumbnail, itemDescription: itemDescription, itemPrice: itemPrice,itemDiscount: itemDiscount,isAvailable: isAvailable,category: category))
+                }
+                populateFoodList(items: itemList)
+                completion(true)
+            }
+        }
+    }
+    
+    func fetchItems(category:String="Other",completion: @escaping (Bool)->()) {
+        var itemList:[Item]=[]
+        db.collection("items").whereField("category", isEqualTo: category).whereField("isAvailable", isEqualTo: true).getDocuments() { (querySnapshot, err) in
             if let err = err {
                 completion(false)
             } else {
@@ -191,7 +302,7 @@ class FirebaseService: NSObject {
     
     
     func listenToOrderStatus(){
-        let ref = Database.database().reference().child(UserData.mobileNumber)
+        let ref = Database.database().reference().child("orders").child(UserData.uuid)
         ref.observe(DataEventType.value, with: { (snapshot) in
             
             if !snapshot.exists() {
@@ -221,11 +332,11 @@ class FirebaseService: NSObject {
     func markOrderAsRecieved(orderStatusData:StatusDataModel,key:String){
         orderStatusData.isRecieved=true
         print("Updating order status")
-        let ref = Database.database().reference().child(UserData.mobileNumber).child(key).setValue(orderStatusData.asDictionary)
+        let ref = Database.database().reference().child("orders").child(UserData.uuid).child(key).setValue(orderStatusData.asDictionary)
     }
     
     func updateOrderStatus(orderId:String,status:Int){
-        let ref = Database.database().reference().child(UserData.mobileNumber).child(orderId)
+        let ref = Database.database().reference().child("orders").child(UserData.uuid).child(orderId)
         ref.updateChildValues(["status":status,"isRecieved":false])
     }
     

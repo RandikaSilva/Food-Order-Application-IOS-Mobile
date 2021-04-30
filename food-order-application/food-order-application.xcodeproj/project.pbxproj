@@ -35,6 +35,8 @@
 		782C6625263B599D00E76839 /* LoacationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782C6624263B599D00E76839 /* LoacationModel.swift */; };
 		786F15D12636F4280048E3DB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 786F15D02636F4280048E3DB /* GoogleService-Info.plist */; };
 		786F15E626370F410048E3DB /* StoreSegmentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786F15E526370F410048E3DB /* StoreSegmentController.swift */; };
+		78A93A1C263C304700A0F8BC /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A93A1B263C304700A0F8BC /* CategoryModel.swift */; };
+		78A93A24263C306D00A0F8BC /* CategoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A93A23263C306D00A0F8BC /* CategoryData.swift */; };
 		78F847DF25F15E760099669D /* FoodDataList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F847DE25F15E760099669D /* FoodDataList.swift */; };
 		78F847E725F15EC00099669D /* FoodItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F847E625F15EC00099669D /* FoodItemModel.swift */; };
 		78F847EC25F15F800099669D /* CardDataList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F847EB25F15F800099669D /* CardDataList.swift */; };
@@ -101,6 +103,8 @@
 		782C6624263B599D00E76839 /* LoacationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoacationModel.swift; sourceTree = "<group>"; };
 		786F15D02636F4280048E3DB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		786F15E526370F410048E3DB /* StoreSegmentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreSegmentController.swift; sourceTree = "<group>"; };
+		78A93A1B263C304700A0F8BC /* CategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
+		78A93A23263C306D00A0F8BC /* CategoryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryData.swift; sourceTree = "<group>"; };
 		78F847DE25F15E760099669D /* FoodDataList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDataList.swift; sourceTree = "<group>"; };
 		78F847E625F15EC00099669D /* FoodItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodItemModel.swift; sourceTree = "<group>"; };
 		78F847EB25F15F800099669D /* CardDataList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDataList.swift; sourceTree = "<group>"; };
@@ -257,6 +261,7 @@
 				7801FDD025F2A3D00046E2E4 /* UserModel.swift */,
 				782C657C263B365C00E76839 /* ItemModel.swift */,
 				782C6624263B599D00E76839 /* LoacationModel.swift */,
+				78A93A1B263C304700A0F8BC /* CategoryModel.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -268,6 +273,7 @@
 				78F847EB25F15F800099669D /* CardDataList.swift */,
 				7801FDD525F2A3E50046E2E4 /* OrderData.swift */,
 				7801FDDB25F2A3FF0046E2E4 /* UserData.swift */,
+				78A93A23263C306D00A0F8BC /* CategoryData.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -512,6 +518,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				782C6625263B599D00E76839 /* LoacationModel.swift in Sources */,
+				78A93A24263C306D00A0F8BC /* CategoryData.swift in Sources */,
 				7801FDCC25F2A3BE0046E2E4 /* OrderModel.swift in Sources */,
 				7801FDBD25F2A1E10046E2E4 /* OrderTableCustomCell.swift in Sources */,
 				781B6D6925EFEC0500C5D25B /* ViewController.swift in Sources */,
@@ -527,6 +534,7 @@
 				7819182025F2801D0091D632 /* ForgetPassword.swift in Sources */,
 				782C65C5263B485400E76839 /* FirebaseServices.swift in Sources */,
 				78F847DF25F15E760099669D /* FoodDataList.swift in Sources */,
+				78A93A1C263C304700A0F8BC /* CategoryModel.swift in Sources */,
 				781917E825F201190091D632 /* ReistrationController.swift in Sources */,
 				78F847EC25F15F800099669D /* CardDataList.swift in Sources */,
 				782C6620263B592A00E76839 /* LocationService.swift in Sources */,
